@@ -19,3 +19,18 @@ class Solution:
         if not root:
             return 0
         return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
+
+    def minDepth(self, root: TreeNode) -> int:
+        if root is None:
+            return 0
+        if root.left is None and root.right is None:
+            return 1
+        minVal = 0
+        if root.left is not None:
+            minVal = self.minDepth(root.left)
+        if root.right is not None:
+            if minVal == 0:
+                minVal = self.minDepth(root.right)
+            else:
+                minVal = min(minVal, self.minDepth(root.right))
+        return minVal + 1

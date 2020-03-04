@@ -16,7 +16,42 @@ class TreeNode:
         currentSum = sum - root.val
         return self.hasPathSum(root.left, currentSum) or self.hasPathSum(root.right, currentSum)
 
-    
+    def isSymmetric(self, root):
+        if root is None:
+            return False
+
+    def isSameTree(self, p, q) -> bool:
+        if p == None and q == None:
+            return True
+        if p == None or q == None:
+            return False
+        if p.val != q.val:
+            return False
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+
+    def maxDepth(self, root) -> int:
+        if not root:
+            return 0
+        return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
+
+    def minDepth(self, root) -> int:
+        if root is None:
+            return 0
+        if root.left is None and root.right is None:
+            return 1
+        minVal = 0
+        if root.left is not None:
+            minVal = self.minDepth(root.left)
+        if root.right is not None:
+            if minVal == 0:
+                minVal = self.minDepth(root.right)
+            else:
+                minVal = min(minVal, self.minDepth(root.right))
+        return minVal + 1
+        
+
+
+
 
 tree = TreeNode(5)
 tree.left = TreeNode(4)
