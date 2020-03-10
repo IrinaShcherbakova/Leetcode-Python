@@ -17,7 +17,7 @@ class MinStack:
         newNode = LinkedList()
         newNode.val = x
         newNode.next = self.tail
-        if newNode.next is not None and newNode.next.min < x:
+        if newNode.next is not None and newNode.next.min < newNode.val:
             newNode.min = newNode.next.min
         else:
             newNode.min = x
