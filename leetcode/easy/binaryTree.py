@@ -48,19 +48,35 @@ class TreeNode:
             else:
                 minVal = min(minVal, self.minDepth(root.right))
         return minVal + 1
-        
+
+    def levelOrderBottom(self, root):
+        if root is None:
+            return []
+        leftChild = self.levelOrderBottom(root.left)
+        rightChild = self.levelOrderBottom(root.right)
+        children = leftChild + rightChild
+        if children == []:
+            return [root.val]
+        return [children, [root.val]]
+    
+    def traverseTree(self, root, traversalList):
+         if root.left is None and root.right is None:
+             traversalList.append([root.val])
+             return
 
 
 
 
-tree = TreeNode(5)
-tree.left = TreeNode(4)
-tree.right = TreeNode(8)
-tree.left.left = TreeNode(11)
-tree.left.left.left = TreeNode(7)
-tree.left.left.right = TreeNode(2)
-tree.right.left = TreeNode(13)
-tree.right.right = TreeNode(4)
-tree.right.right.right = TreeNode(1)
-print("res is %s" % tree.hasPathSum(tree, 21))
+
+
+tree = TreeNode(3)
+tree.left = TreeNode(9)
+tree.right = TreeNode(20)
+# tree.left.left = TreeNode(11)
+# tree.left.left.left = TreeNode(7)
+# tree.left.left.right = TreeNode(2)
+tree.right.left = TreeNode(15)
+tree.right.right = TreeNode(7)
+#tree.right.right.right = TreeNode(1)
+print("res is %s" % tree.levelOrderBottom(tree))
 
