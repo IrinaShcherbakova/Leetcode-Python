@@ -48,3 +48,18 @@ class ListNode:
             shorterList = shorterList.next
         return None
 
+    def removeElements(self, head, val):
+        while head is not None and head.val == val:
+            head = head.next
+        if head is None:
+            return head
+        prev = head
+        current = (head.next if head.next is not None else None)
+        while current is not None:
+            if current.val == val:
+                prev.next = current.next
+            else:
+                prev = prev.next
+            current = current.next
+        return head
+
