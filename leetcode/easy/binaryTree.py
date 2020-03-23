@@ -64,6 +64,17 @@ class TreeNode:
              traversalList.append([root.val])
              return
 
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        if root is None:
+            return root
+        if root.left is None and root.right is None:
+            return root
+        rightNode = self.invertTree(root.left)
+        leftNode = self.invertTree(root.right)
+        root.left = leftNode
+        root.right = rightNode
+        return root
+
 
 
 
