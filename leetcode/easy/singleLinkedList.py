@@ -18,6 +18,34 @@ class ListNode:
             slowPointer = slowPointer.next
         return False
 
+    def isPalindrome(self, head: ListNode) -> bool:
+        if head is None or head.next is None:
+            return True
+        current = head
+        nodes = []
+        while current is not None:
+            nodes.append(current.val)
+            current = current.next
+        i = 0
+        j = len(nodes) - 1
+        #print(nodes)
+        while i < j:
+            # print(nodes[i])
+            # print(nodes[j])
+            if nodes[i] != nodes[j]:
+                return False
+            i += 1
+            j -= 1
+        return True
+
+    def deleteNode(self, node):
+        """
+        :type node: ListNode
+        :rtype: void Do not return anything, modify node in-place instead.
+        """
+        node.val = node.next.val
+        node.next = node.next.next
+
     def getIntersectionNode(self, headA, headB):
         if headA is None or headB is None:
             return None
